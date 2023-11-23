@@ -1,0 +1,57 @@
+.comments .write {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.comments .write > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 0.3rem;
+}
+
+.comments .write .input {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color-card);
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1rem;
+  height: auto;
+}
+
+.comments .write .input img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.comments .write .input textarea {
+  transition: 0.2s;
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--active-text);
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  line-height: 1.2rem;
+}
+
+.comments .write .input textarea:active,
+.comments .write .input textarea:focus {
+  outline: none;
+}
+
+.comments .list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}

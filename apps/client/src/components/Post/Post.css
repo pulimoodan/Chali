@@ -1,0 +1,300 @@
+.post {
+  border: 1px solid var(--border-color);
+  background: var(--bg-color-card);
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+
+@keyframes move_to_top {
+  from {
+    width: 20px;
+    height: 20px;
+    bottom: -100%;
+    opacity: 1;
+  }
+  to {
+    width: 30px;
+    height: 30px;
+    bottom: 300px;
+    opacity: 0.5;
+  }
+}
+
+.post .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.post .top svg {
+  color: var(--subdued-text);
+  width: 1.3rem;
+  height: 1.3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.post .top .action {
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+}
+
+.post .top .action .wrapper {
+  cursor: pointer;
+  position: relative;
+}
+
+.post .top .action .wrapper::after {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  width: calc(100% + 1rem);
+  border-radius: 10px;
+  left: -0.5rem;
+  height: calc(100% + 1rem);
+  top: -0.5rem;
+  background: var(--bg-color);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.post .top .action:hover .wrapper::after,
+.post .top .action.active .wrapper::after {
+  opacity: 1;
+}
+
+.post .top .popover .menu {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 150px;
+  border-radius: 5px;
+  right: -0.5rem;
+  top: calc(100% + 0.8rem);
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: 0.2s;
+  background: var(--bg-color);
+}
+
+.post .top .popover .menu.active {
+  opacity: 1;
+  z-index: 100;
+  transform: translateY(0%);
+}
+
+.post .top .popover .menu li {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  color: var(--subdued-text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post .top .popover .menu li img {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+}
+
+.post .top .popover .menu li:hover {
+  background: var(--bg-color-2);
+}
+
+.post .top img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.post .top .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.post .top .details h4 {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.post .top .details h4 a {
+  font-size: 0.8rem;
+  color: var(--highlight-color);
+  text-decoration: none;
+  margin-left: 0.3rem;
+  cursor: pointer;
+}
+
+.post .top .details p {
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+}
+
+.post .content {
+  margin: 1.5rem 0;
+}
+
+.post .content p {
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  min-height: 1rem;
+}
+
+.post .bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.post .bottom .actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.post .bottom .actions .action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.post .bottom .actions .action::after {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  width: calc(100% + 1rem);
+  border-radius: 10px;
+  left: -0.5rem;
+  height: calc(100% + 1rem);
+  top: -0.5rem;
+  background: var(--bg-color);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.post .bottom .actions .action.active::after {
+  background: var(--highlight-color);
+  opacity: 0.1;
+}
+
+.post .bottom .actions .action .reactions {
+  position: absolute;
+  top: 9;
+  left: -0.5rem;
+  display: flex;
+  transform: translateY(-50%);
+  flex-direction: row-reverse;
+  padding: 0.5rem;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  gap: 1rem;
+  opacity: 0;
+  transition: 0.2s;
+  z-index: -1;
+}
+
+.post .bottom .actions .action:hover .reactions {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(-100%);
+  overflow: hidden;
+}
+
+.post .bottom .actions .action .reactions img {
+  height: 25px;
+  width: 25px;
+  transition: 0.2s;
+}
+
+.post .bottom .actions .action .reactions div {
+  position: relative;
+  display: flex;
+}
+
+.post .bottom .actions .action .reactions div.active::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  height: 35px;
+  background: var(--highlight-color);
+  opacity: 0.2;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.post .bottom .actions .action .reactions img:hover {
+  transform: scale(1.3);
+}
+
+.post .bottom .actions .action:not(.active):hover::after {
+  opacity: 1;
+  background: var(--bg-color);
+}
+
+.post .bottom .actions img {
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+
+.post .bottom .actions .action p {
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+  z-index: 1;
+}
+
+.post .bottom .actions .action .label {
+  position: absolute;
+  top: calc(-100% - 1rem);
+  padding: 0.2rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--subdued-text);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.post .bottom .actions .action:hover .label {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.post .bottom .status p {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+}

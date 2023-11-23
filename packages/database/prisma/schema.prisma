@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String  @id @default(uuid())
+  firstName  String
+  lastName   String
+  email      String  @unique
+  userName   String  @unique
+  password   String
+  profilePic String?
+
+  verification   Verification? @relation(fields: [verificationId], references: [id])
+  verificationId String?
+
+  posts         Post[]
+  reactions     Reaction[]
+  comments      Comment[]
+  bookmarks     Bookmark[]
+  notifications Notification[]
+  following     Follow[]       @relation("User")
+  followers     Follow[]       @relation("Creator")
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Verification {
+  id String @id @default(uuid())
+
+  user      User[]
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Post {
+  id String @id @default(uuid())
+
+  content String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  comments  Comment[]
+  bookmarks Bookmark[]
+  reactions Reaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id String @id @default(uuid())
+
+  type    String
+  content String
+  link    String
+  read    Boolean @default(false)
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reaction {
+  id String @id @default(uuid())
+
+  value Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id String @id @default(uuid())
+
+  content String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Bookmark {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String?
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Follow {
+  id String @id @default(uuid())
+
+  user   User   @relation("User", fields: [userId], references: [id])
+  userId String
+
+  creator   User   @relation("Creator", fields: [creatorId], references: [id])
+  creatorId String
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([userId, creatorId])
+}

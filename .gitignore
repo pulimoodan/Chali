@@ -1,0 +1,11 @@
+# Vite
+node_modules/
+dist/
+build/
+.cache/
+public/
+
+# Nest
+node_modules/
+dist/
+.env

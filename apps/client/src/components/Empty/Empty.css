@@ -1,0 +1,9 @@
+.empty {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--subdued-text);
+  border: 1px solid var(--border-color);
+  background: var(--bg-color-card);
+  padding: 1.5rem;
+  border-radius: 5px;
+}

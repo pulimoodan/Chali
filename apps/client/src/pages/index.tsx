@@ -1,0 +1,10 @@
+export { default as HomePage } from "./Home";
+export { default as FollowingPage } from "./Following";
+export { default as TrendingPage } from "./Trending";
+export { default as BookmarksPage } from "./Bookmarks";
+export { default as PostPage } from "./Post";
+export { default as ProfilePage } from "./Profile";
+export { default as SettingsPage } from "./Settings";
+export { default as NotificationsPage } from "./Notifications";
+export { default as CreatePage } from "./Create";
+export { default as SignInPage } from "./SignIn";

@@ -1,0 +1,40 @@
+.settings-item {
+  border: 1px solid var(--border-color);
+  background: var(--bg-color-card);
+  padding: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.settings-item .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.settings-item .details h3 {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.settings-item .details p {
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+}
+
+.settings-item select {
+  padding: 0.5rem 1rem;
+  color: var(--subdued-text);
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.settings-item select:active,
+.settings-item select:focus {
+  outline: none;
+}

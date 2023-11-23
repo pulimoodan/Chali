@@ -1,0 +1,131 @@
+.create {
+  border: 1px solid var(--border-color);
+  background: var(--bg-color-card);
+  padding: 1.5rem;
+  border-radius: 5px;
+  width: calc(100% - 3rem);
+}
+
+.create .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.create .top img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.create .top .details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.create .top .details h4 {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.create .top .details p {
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+}
+
+.create .top .update {
+  font-size: 0.8rem;
+  color: var(--highlight-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.create .top .update img {
+  width: 35px;
+  height: 35px;
+}
+
+.create .content {
+  margin: 1.5rem 0;
+}
+
+.create .content textarea {
+  transition: 0.2s;
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--active-text);
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  line-height: 1.2rem;
+  width: 100%;
+}
+
+.create .content textarea:active,
+.create .content textarea:focus {
+  outline: none;
+}
+
+.create .bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.create .bottom .action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.create .bottom .action::after {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  width: calc(100% + 1rem);
+  border-radius: 10px;
+  left: -0.5rem;
+  height: calc(100% + 1rem);
+  top: -0.5rem;
+  background: var(--bg-color);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.create .bottom .action:hover::after {
+  opacity: 1;
+}
+
+.create .bottom .action img {
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+
+.create .bottom .action p {
+  font-size: 1rem;
+  color: var(--active-text);
+  z-index: 1;
+}
+
+.create .bottom .info {
+  font-size: 0.8rem;
+  color: var(--subdued-text);
+}
