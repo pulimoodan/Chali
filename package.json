@@ -14,13 +14,11 @@
     "db:deploy": "dotenv -e .env turbo run db:deploy"
   },
   "devDependencies": {
-    "turbo": "^1.10.13"
+    "turbo": "^1.10.13",
+    "dotenv-cli": "latest"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "dotenv": "^16.3.1"
-  }
+  ]
 }
