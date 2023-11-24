@@ -14,7 +14,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private configService: ConfigService,
   ) {
-    this.DOMAIN = this.configService.get('HOST').split('/')[2];
+    this.DOMAIN = this.configService.get('HOST').split('/')[2].split(':')[0];
   }
 
   @Post('signin')

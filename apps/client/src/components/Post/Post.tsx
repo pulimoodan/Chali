@@ -30,7 +30,7 @@ interface Props {
 
 function Post({ alone = false, post }: Props) {
   const { user } = useAuthContext();
-  const { showToast, setBodyWrap } = useUIContext();
+  const { showToast } = useUIContext();
   const [reacted, setReacted] = useState(post.reacted);
   const [bookmarked, setBookmarked] = useState(post.bookmarked);
   const [bookmarks, setBookmarks] = useState(post.bookmarks);
@@ -129,7 +129,6 @@ function Post({ alone = false, post }: Props) {
       if (popOver.current && !(popOver.current as any).contains(e.target)) {
         setMorepopover(false);
       }
-      return false;
     }
 
     document.addEventListener("mousedown", handleClickOutside, false);
@@ -185,15 +184,15 @@ function Post({ alone = false, post }: Props) {
           ref={popOver}
         >
           <div
-            onClick={() => {
-              setMorepopover((state) => !state);
-              setBodyWrap(true);
-            }}
+            onClick={() => setMorepopover((state) => !state)}
             className="wrapper"
           >
             <FiMoreHorizontal />
           </div>
-          <ul className={`menu ${morePopover && "active"}`}>
+          <ul
+            className={`menu ${morePopover && "active"}`}
+            onClick={() => setMorepopover(false)}
+          >
             <li onClick={sharePost}>
               <img src={shareIcon} alt="Icon of share" /> Share post
             </li>

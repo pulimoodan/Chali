@@ -240,7 +240,6 @@ nav {
 }
 
 .profile-mobile {
-  position: relative;
   display: none;
 }
 
@@ -250,21 +249,23 @@ nav {
   border-radius: 50%;
 }
 
-.profile-mobile .details {
-  transform: scale(0);
-  position: absolute;
-  width: 150px;
-  top: calc(100% + 1rem);
-  right: 0;
+.profile-mobile .mobile-sidenav {
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(100%, -50%);
+  position: fixed;
   z-index: 200;
-  background: var(--bg-color-card);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
   transition: 0.3s;
-  transform-origin: top right;
+  pointer-events: none;
 }
 
-body::before {
+.overlay {
   content: "";
   position: fixed;
   width: 100vw;
@@ -277,15 +278,29 @@ body::before {
   display: none;
 }
 
-body.display-wrap::before {
+.overlay.active {
   display: block;
 }
 
-.profile-mobile .details.active {
-  transform: scale(1);
+.profile-mobile .mobile-sidenav.active {
+  transform: scale(1) translate(-50%, -50%);
+  pointer-events: all;
 }
 
-.profile-mobile .details li {
+.profile-mobile .mobile-sidenav .profile {
+  width: calc(100% - 2rem);
+  margin: 0.5rem 0;
+}
+
+.profile-mobile .mobile-sidenav ul {
+  width: calc(100% - 1rem);
+  background: var(--bg-color-card);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.profile-mobile .mobile-sidenav ul li {
   padding: 0.5rem;
   font-size: 0.9rem;
   transition: 0.2s;
@@ -293,25 +308,10 @@ body.display-wrap::before {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.profile-mobile .details li.user {
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  transition: 0.2s;
-  color: var(--subdued-text);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1rem;
-}
-
-.profile-mobile .details li.user h4 {
-  color: var(--active-text);
-}
-
-.profile-mobile .details li img {
+.profile-mobile .mobile-sidenav li img {
   width: 20px;
   height: 20px;
   border-radius: 0;
@@ -347,7 +347,7 @@ body.display-wrap::before {
     margin: 0;
   }
 
-  nav .profile {
+  nav .profile:not(nav .profile-mobile .profile) {
     display: none;
   }
 
@@ -375,6 +375,10 @@ body.display-wrap::before {
     gap: 0.5rem;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .links-wrapper div:nth-of-type(2) {
+    display: none;
   }
 
   .links-wrapper .line {

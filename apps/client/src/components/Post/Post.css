@@ -5,21 +5,6 @@
   border-radius: 5px;
 }
 
-@keyframes move_to_top {
-  from {
-    width: 20px;
-    height: 20px;
-    bottom: -100%;
-    opacity: 1;
-  }
-  to {
-    width: 30px;
-    height: 30px;
-    bottom: 300px;
-    opacity: 0.5;
-  }
-}
-
 .post .top {
   display: flex;
   flex-direction: row;
@@ -85,12 +70,14 @@
   overflow: hidden;
   transition: 0.2s;
   background: var(--bg-color);
+  pointer-events: none;
 }
 
 .post .top .popover .menu.active {
   opacity: 1;
   z-index: 100;
   transform: translateY(0%);
+  pointer-events: all;
 }
 
 .post .top .popover .menu li {

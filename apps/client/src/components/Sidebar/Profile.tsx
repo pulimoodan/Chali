@@ -3,7 +3,13 @@ import { LinkToTop } from "../Link/LinkToTop";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { capitalizeFirstLetter } from "../../lib/generalt";
 import { FiMoreVertical } from "react-icons/fi";
-import { settingsIcon, signOutIcon } from "../../assets";
+import {
+  chatIcon,
+  createIcon,
+  notificationsIcon,
+  settingsIcon,
+  signOutIcon,
+} from "../../assets";
 import axios from "axios";
 import { useUIContext } from "../Hooks/useUIContext";
 
@@ -11,10 +17,9 @@ function Profile() {
   const { showToast } = useUIContext();
   const { user, authenticated } = useAuthContext();
   const [morePopover, setMorepopover] = useState(false);
-  const [mobilePopover, setMobilePopover] = useState(false);
+  const [mobilePopoverActive, setMobilePopoverActive] = useState(false);
   const popOver = useRef(null);
   const mobilePopOver = useRef(null);
-  const { setBodyWrap } = useUIContext();
 
   const handleSignout = async () => {
     await axios.post("/api/auth/signout", {
@@ -39,8 +44,7 @@ function Profile() {
         mobilePopOver.current &&
         !(mobilePopOver.current as any).contains(e.target)
       ) {
-        setBodyWrap(false);
-        setMobilePopover(false);
+        setMobilePopoverActive(false);
       }
     }
 
@@ -53,6 +57,9 @@ function Profile() {
 
   return (
     <>
+      <div
+        className={`overlay ${mobilePopoverActive == true && "active"}`}
+      ></div>
       <div className="profile">
         <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
           <img
@@ -78,12 +85,7 @@ function Profile() {
           className={`action popover ${morePopover && "active"}`}
           ref={popOver}
         >
-          <div
-            onClick={() => {
-              setBodyWrap(true);
-              setMorepopover(true);
-            }}
-          >
+          <div onClick={() => setMorepopover((state) => !state)}>
             <FiMoreVertical />
           </div>
           <ul className={`menu ${morePopover && "active"}`}>
@@ -106,35 +108,67 @@ function Profile() {
             `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user.firstName}+${user.lastName}`
           }
           alt="Profile image"
-          onClick={() =>
-            setMobilePopover((state) => {
-              setBodyWrap(!state);
-              return !state;
-            })
-          }
+          onClick={() => setMobilePopoverActive((state) => !state)}
         />
-        <ul
-          className={`details ${mobilePopover && "active"}`}
+        <div
+          className={`mobile-sidenav ${mobilePopoverActive && "active"}`}
           ref={mobilePopOver}
+          onClick={() => setMobilePopoverActive(false)}
         >
-          <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
-            <li className="user">
-              <h4>
-                {capitalizeFirstLetter(user.firstName)}{" "}
-                {capitalizeFirstLetter(user.lastName)}
-              </h4>
-              <p>@{user.userName}</p>
-            </li>
-          </LinkToTop>
-          <LinkToTop to="/settings">
-            <li>
-              <img src={settingsIcon} alt="Icon of share" /> Settings
-            </li>
-          </LinkToTop>
-          <li onClick={handleSignout}>
-            <img src={signOutIcon} alt="Icon of copy" /> Sign out
-          </li>
-        </ul>
+          <ul>
+            <LinkToTop to="/chat">
+              <li>
+                <img src={chatIcon} alt="Icon of chat" /> Chat
+              </li>
+            </LinkToTop>
+            <LinkToTop to="/notifications">
+              <li>
+                <img src={notificationsIcon} alt="Icon of bell" /> Notifications
+              </li>
+            </LinkToTop>
+            <LinkToTop to="/create">
+              <li>
+                <img src={createIcon} alt="Icon of pen" /> Create
+              </li>
+            </LinkToTop>
+          </ul>
+
+          <div className="profile">
+            <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
+              <img
+                src={
+                  user.profilePic ||
+                  `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${user.firstName}+${user.lastName}`
+                }
+                alt="Profile image"
+              />
+            </LinkToTop>
+            <div className="details">
+              <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
+                <h4>
+                  {capitalizeFirstLetter(user.firstName)}{" "}
+                  {capitalizeFirstLetter(user.lastName)}
+                </h4>
+              </LinkToTop>
+              <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
+                <p>@{user.userName}</p>
+              </LinkToTop>
+            </div>
+          </div>
+
+          <ul>
+            <LinkToTop to="/settings">
+              <li>
+                <img src={settingsIcon} alt="Icon of share" /> Settings
+              </li>
+            </LinkToTop>
+            <a onClick={handleSignout}>
+              <li>
+                <img src={signOutIcon} alt="Icon of copy" /> Sign out
+              </li>
+            </a>
+          </ul>
+        </div>
       </div>
     </>
   );
