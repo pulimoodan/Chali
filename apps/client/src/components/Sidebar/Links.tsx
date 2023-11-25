@@ -10,6 +10,7 @@ import {
 } from "../../assets";
 import { LinkToTop } from "../Link/LinkToTop";
 import { useAuthContext } from "../Hooks/useAuthContext";
+import { useEffect } from "react";
 
 const Items = [
   [
@@ -98,6 +99,14 @@ const TabItems = [
 function Links() {
   const { authenticated } = useAuthContext();
   const location = useLocation();
+
+  useEffect(() => {
+    if (MobileItems[0].activeLinks.includes(location.pathname)) {
+      document.body.classList.add("tabs-visible");
+    } else {
+      document.body.classList.remove("tabs-visible");
+    }
+  }, [location]);
 
   return (
     <div className="links-wrapper">

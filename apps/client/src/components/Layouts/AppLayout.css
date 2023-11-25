@@ -23,8 +23,13 @@ section {
     padding: 0;
   }
 
+  body.tabs-visible section {
+    margin-top: 5.5rem;
+  }
+
   section {
-    margin: 4rem 0;
+    gap: 0.5rem;
+    margin: 3.5rem 0;
     border-radius: 0;
   }
 }
