@@ -379,6 +379,10 @@ nav {
     gap: 0.5rem;
   }
 
+  body:not(.tabs-visible) nav {
+    border-bottom: 1px solid var(--border-color);
+  }
+
   nav .logo h3 {
     display: none;
   }
