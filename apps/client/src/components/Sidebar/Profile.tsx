@@ -3,13 +3,7 @@ import { LinkToTop } from "../Link/LinkToTop";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { capitalizeFirstLetter } from "../../lib/generalt";
 import { FiMoreVertical } from "react-icons/fi";
-import {
-  chatIcon,
-  createIcon,
-  notificationsIcon,
-  settingsIcon,
-  signOutIcon,
-} from "../../assets";
+import { settingsIcon, signOutIcon } from "../../assets";
 import axios from "axios";
 import { useUIContext } from "../Hooks/useUIContext";
 
