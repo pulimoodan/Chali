@@ -115,24 +115,6 @@ function Profile() {
           ref={mobilePopOver}
           onClick={() => setMobilePopoverActive(false)}
         >
-          <ul>
-            <LinkToTop to="/chat">
-              <li>
-                <img src={chatIcon} alt="Icon of chat" /> Chat
-              </li>
-            </LinkToTop>
-            <LinkToTop to="/notifications">
-              <li>
-                <img src={notificationsIcon} alt="Icon of bell" /> Notifications
-              </li>
-            </LinkToTop>
-            <LinkToTop to="/create">
-              <li>
-                <img src={createIcon} alt="Icon of pen" /> Create
-              </li>
-            </LinkToTop>
-          </ul>
-
           <div className="profile">
             <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
               <img
