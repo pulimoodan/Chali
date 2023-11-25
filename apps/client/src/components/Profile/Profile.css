@@ -271,7 +271,6 @@
   color: var(--subdued-text);
 }
 
-
 .edit-details .input input {
   color: var(--active-text);
   display: block;
@@ -290,4 +289,23 @@
 .edit-details .input p.error {
   font-size: 0.8rem;
   color: red;
+}
+
+@media (max-width: 800px) {
+  .profile-head {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .profile-head .card {
+    width: calc(100% - 3rem);
+  }
+
+  .profile-posts .title {
+    padding: 0 1rem;
+  }
+
+  .profile-posts .list {
+    gap: 0.5rem;
+  }
 }

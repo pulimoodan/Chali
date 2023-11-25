@@ -46,3 +46,9 @@
   line-height: 1.2rem;
   font-weight: 300;
 }
+
+@media (max-width: 800px) {
+  .comment {
+    padding-left: 0.5rem;
+  }
+}
