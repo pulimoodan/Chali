@@ -50,7 +50,7 @@ const MobileItems = [
   {
     label: "Home",
     url: "/",
-    activeLinks: ["/", "/following", "/trending", "/bookmarks"],
+    activeLinks: ["/", "/following", "/trending"],
     icon: homeIcon,
     requireAuth: false,
   },
@@ -78,7 +78,7 @@ const MobileItems = [
 ];
 
 const TabItems = [
-  { label: "Recent", url: "/", requireAuth: false },
+  { label: "Latest", url: "/", requireAuth: false },
   {
     label: "Following",
     url: "/following",
@@ -88,11 +88,6 @@ const TabItems = [
     label: "Trending",
     url: "/trending",
     requireAuth: false,
-  },
-  {
-    label: "Bookmarks",
-    url: "/bookmarks",
-    requireAuth: true,
   },
 ];
 

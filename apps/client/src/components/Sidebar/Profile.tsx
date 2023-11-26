@@ -3,7 +3,7 @@ import { LinkToTop } from "../Link/LinkToTop";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { capitalizeFirstLetter } from "../../lib/generalt";
 import { FiMoreVertical } from "react-icons/fi";
-import { settingsIcon, signOutIcon } from "../../assets";
+import { bookmarksIcon, settingsIcon, signOutIcon } from "../../assets";
 import axios from "axios";
 import { useUIContext } from "../Hooks/useUIContext";
 
@@ -109,6 +109,14 @@ function Profile() {
           ref={mobilePopOver}
           onClick={() => setMobilePopoverActive(false)}
         >
+          <ul>
+            <LinkToTop to={authenticated ? `/bookmarks` : "/signin"}>
+              <li>
+                <img src={bookmarksIcon} alt="Icon of bookmark" /> Bookmarks
+              </li>
+            </LinkToTop>
+          </ul>
+
           <div className="profile">
             <LinkToTop to={authenticated ? `/profile/${user.id}` : "/signin"}>
               <img
